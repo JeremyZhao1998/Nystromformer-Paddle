@@ -1,0 +1,3 @@
+[2022/02/12 14:41:00] root INFO: f1_score: 
+[2022/02/12 14:41:00] root INFO: 	mean diff: check passed: True, value: 7.561729020721941e-13
+[2022/02/12 14:41:00] root INFO: diff check passed

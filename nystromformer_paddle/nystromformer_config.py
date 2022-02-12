@@ -28,7 +28,8 @@ class NystromformerConfig:
             chunk_size_feed_forward=0,
             add_cross_attention=False,
             output_attentions=False,
-            output_hidden_states=False
+            output_hidden_states=False,
+            problem_type=None,
     ):
         self.vocab_size = vocab_size
         self.max_position_embeddings = max_position_embeddings
@@ -55,6 +56,7 @@ class NystromformerConfig:
         self.add_cross_attention = add_cross_attention
         self.output_attentions = output_attentions
         self.output_hidden_states = output_hidden_states
+        self.problem_type = problem_type
 
     def load_config_json(self, config_json):
         with open(config_json) as f:

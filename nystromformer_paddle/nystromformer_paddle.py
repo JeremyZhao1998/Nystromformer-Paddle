@@ -377,6 +377,7 @@ class NystromformerForSequenceClassification(nn.Layer):
         self.num_labels = config.num_labels
         self.nystromformer = NystromformerModel(config)
         self.classifier = NystromformerClassificationHead(config)
+        self.config = config
 
     def forward(
             self,
@@ -419,7 +420,7 @@ class NystromformerForSequenceClassification(nn.Layer):
                     loss = loss_fct(logits, labels)
             elif self.config.problem_type == "single_label_classification":
                 loss_fct = nn.CrossEntropyLoss()
-                loss = loss_fct(logits.view(-1, self.num_labels), labels.view(-1))
+                loss = loss_fct(logits.reshape([-1, self.num_labels]), labels.flatten())
             elif self.config.problem_type == "multi_label_classification":
                 loss_fct = nn.BCEWithLogitsLoss()
                 loss = loss_fct(logits, labels)

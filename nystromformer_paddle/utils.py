@@ -1,5 +1,6 @@
 import math
 import paddle
+from paddle.metric import Precision, Recall
 
 
 def gelu_python(x):
@@ -84,3 +85,13 @@ def trans_matrix(matrix):
     dim = matrix.ndim
     trans_list = [i for i in range(dim - 2)] + [dim - 1, dim - 2]
     return matrix.transpose(trans_list)
+
+
+def update_metrics(logits, labels, metrics):
+    for metric in metrics:
+        metric.update(logits.argmax(axis=1), labels)
+
+
+def get_f1_score(precision, recall):
+    p, r = precision.accumulate(), recall.accumulate()
+    return 2 * p * r / (p + r)
