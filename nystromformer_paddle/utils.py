@@ -1,6 +1,5 @@
 import math
 import paddle
-from paddle.metric import Precision, Recall
 
 
 def gelu_python(x):

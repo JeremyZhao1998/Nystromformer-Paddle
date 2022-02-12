@@ -2,7 +2,7 @@ import torch
 import paddle
 import numpy
 
-from nystromformer_paddle import nystromformer_paddle, nystromformer_config, nystromformer_torch
+from nystromformer_paddle import nystromformer_paddle, nystromformer_config
 import transformers
 
 import random

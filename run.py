@@ -1,5 +1,6 @@
 import paddle
 from paddle.io import Dataset, DataLoader
+import numpy
 
 from transformers import AutoTokenizer
 from datasets import load_dataset
@@ -14,8 +15,8 @@ import reprod_log
 
 dataset = 'imdb'
 max_len = 512
-batch_size = 2
-device = 'cpu'
+batch_size = 32
+device = 'gpu'
 lr = 3e-5
 epochs = 4
 mixed_precision = True
@@ -76,7 +77,7 @@ def main():
         precision.reset()
         recall.reset()
         model.train()
-        for batch_data in train_loader:
+        for i, batch_data in enumerate(train_loader):
             outputs = model(
                 input_ids=batch_data[0],
                 token_type_ids=batch_data[1],
@@ -93,7 +94,8 @@ def main():
                 loss.backward()
                 optimizer.minimize(loss)
             optimizer.clear_gradients()
-            print('epoch:', epoch, 'loss:', loss.numpy())
+            if i % 50 == 0:
+                print('epoch:', epoch, 'loss:', loss.numpy())
         train_f1_score = get_f1_score(precision, recall)
 
         precision.reset()
@@ -112,7 +114,7 @@ def main():
         print('----------------------------------------------')
         print('epoch:', epoch, 'finished. train_f1_score:', train_f1_score, 'valid_f1_score:', valid_f1_score)
         print('----------------------------------------------')
-        log.add('epoch' + str(epoch), valid_f1_score)
+        log.add('epoch' + str(epoch), numpy.asarray(valid_f1_score))
     log.save('fine_tune_log.npy')
 
 
