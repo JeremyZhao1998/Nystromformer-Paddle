@@ -32,3 +32,9 @@ This file fine-tunes the pretrained model with IMDB dataset and gets the expecte
 
 To change the configuration of the training, simply modify line 16-22 in run.py
 
+## Reproduce result
+
+We fine-tuned the model on IMDB dataset. 
+
+Using pretrained weight of nystromformer-512(https://huggingface.co/uw-madison/nystromformer-512), we gets the f1-score: 93.24 on validation set, higher than the result of 93.0 reported in the original paper. The training info is saved in fine_tune_log.npy.
+
