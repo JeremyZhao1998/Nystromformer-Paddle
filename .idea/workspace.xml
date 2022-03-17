@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8e86a5b-1435-4a9e-92c0-5215aeca9ade" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/compare_code/train_compare.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nystromformer_paddle/nystromformer_tokenizer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compare_code/loss_compare.py" beforeDir="false" afterPath="$PROJECT_DIR$/compare_code/loss_compare.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nystromformer_paddle/nystromformer_torch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nystromformer_paddle/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/nystromformer_paddle/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/tokenized_imdb_test_512.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/tokenized_imdb_train_512.pkl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pretrained_files/tokenizer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pretrained_files/tokenizer_config.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,14 +36,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PaddleNLP" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.train_compare">
+  <component name="RunManager" selected="Python.run_new">
     <configuration name="backward_compare" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nystromformer-Paddle" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,7 +88,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="metric_compare" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Nystromformer-Paddle" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -95,12 +96,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/compare_code" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/compare_code/metric_compare.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train_compare" />
+        <item itemvalue="Python.run_new" />
         <item itemvalue="Python.run" />
+        <item itemvalue="Python.train_compare" />
         <item itemvalue="Python.backward_compare" />
         <item itemvalue="Python.loss_compare" />
-        <item itemvalue="Python.metric_compare" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +176,10 @@
       <workItem from="1644656790884" duration="2531000" />
       <workItem from="1644659607300" duration="11000" />
       <workItem from="1644659621890" duration="6971000" />
-      <workItem from="1644681624604" duration="2429000" />
+      <workItem from="1644681624604" duration="2881000" />
+      <workItem from="1645286860435" duration="552000" />
+      <workItem from="1647354682752" duration="19543000" />
+      <workItem from="1647530549949" duration="1903000" />
     </task>
     <servers />
   </component>
@@ -198,7 +202,8 @@
     <SUITE FILE_PATH="coverage/Nystromformer_Paddle$loss_compare.coverage" NAME="loss_compare Coverage Results" MODIFIED="1644651587721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/compare_code" />
     <SUITE FILE_PATH="coverage/Nystromformer_Paddle$train_compare.coverage" NAME="train_compare Coverage Results" MODIFIED="1644682793692" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/compare_code" />
     <SUITE FILE_PATH="coverage/Nystromformer_Paddle$backward_compare.coverage" NAME="backward_compare Coverage Results" MODIFIED="1644659174201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/compare_code" />
-    <SUITE FILE_PATH="coverage/Nystromformer_Paddle$run.coverage" NAME="run Coverage Results" MODIFIED="1644665519484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Nystromformer_Paddle$run.coverage" NAME="run Coverage Results" MODIFIED="1647412894758" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Nystromformer_Paddle$run_new.coverage" NAME="run_new Coverage Results" MODIFIED="1647531612151" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Nystromformer_Paddle$metric_compare.coverage" NAME="metric_compare Coverage Results" MODIFIED="1644648058733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/compare_code" />
   </component>
 </project>

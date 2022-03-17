@@ -1,12 +1,12 @@
 import paddle
 from paddle.io import Dataset, DataLoader
-import numpy
+import numpy as np
 
-from transformers import AutoTokenizer
 from datasets import load_dataset
 
 from nystromformer_paddle.nystromformer_config import NystromformerConfig
 from nystromformer_paddle.nystromformer_paddle import NystromformerForSequenceClassification
+from nystromformer_paddle.nystromformer_tokenizer import NystromformerTokenizer
 from nystromformer_paddle.utils import update_metrics, get_f1_score
 
 import pickle
@@ -26,27 +26,31 @@ def prepare_loader(split):
     data_path = 'data/tokenized_' + dataset + '_' + split + '_' + str(max_len) + '.pkl'
     try:
         with open(data_path, 'rb') as f:
-            input_ids, token_type_ids, attention_mask, labels = pickle.load(f)
+            tokenized_data, labels = pickle.load(f)
     except FileNotFoundError:
         raw_data = load_dataset(dataset)
-        tokenizer = AutoTokenizer.from_pretrained('pretrained_files')
-        tokenized_data = tokenizer(
-            raw_data[split]['text'],
-            truncation=True, padding='max_length', max_length=max_len - 2,
-            return_tensors='np'
+        tokenizer = NystromformerTokenizer('/home/zhao/Nystromformer-Paddle/pretrained_files/vocab.txt')
+        tokenized_data_list = tokenizer(
+            raw_data[split]['text'][:10],
+            max_seq_len=max_len - 2, pad_to_max_seq_len=True,
+            return_position_ids=True, return_token_type_ids=True, return_attention_mask=True,
         )
+        tokenized_data = [
+            (np.asarray(data['input_ids'], dtype=np.long),
+             np.asarray(data['token_type_ids'], dtype=np.long),
+             np.asarray(data['attention_mask'], dtype=np.long))
+            for data in tokenized_data_list
+        ]
         f = open(data_path, 'wb')
-        input_ids, token_type_ids, attention_mask = \
-            tokenized_data['input_ids'], tokenized_data['token_type_ids'], tokenized_data['attention_mask']
         labels = raw_data[split]['label']
-        pickle.dump((input_ids, token_type_ids, attention_mask, labels), f)
+        pickle.dump((tokenized_data, labels), f)
 
     class TextDataset(Dataset):
         def __len__(self):
-            return len(input_ids)
+            return len(tokenized_data)
 
         def __getitem__(self, idx):
-            return input_ids[idx], token_type_ids[idx], attention_mask[idx], labels[idx]
+            return tokenized_data[idx][0], tokenized_data[idx][1], tokenized_data[idx][2], labels[idx]
 
     loader = DataLoader(dataset=TextDataset(), batch_size=batch_size, shuffle=split == 'train')
     return loader
@@ -114,7 +118,7 @@ def main():
         print('----------------------------------------------')
         print('epoch:', epoch, 'finished. train_f1_score:', train_f1_score, 'valid_f1_score:', valid_f1_score)
         print('----------------------------------------------')
-        log.add('epoch' + str(epoch), numpy.asarray(valid_f1_score))
+        log.add('epoch' + str(epoch), np.asarray(valid_f1_score))
     log.save('fine_tune_log.npy')
 
 

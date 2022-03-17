@@ -16,9 +16,10 @@ Nystromformer paper link: https://arxiv.org/pdf/2102.03902v3.pdf
 ## Requirements
 
 - paddlepaddle >= 2.2.0
-- transformers >= 4.16.0.dev0
 - datasets >= 1.18.1
 - reprod_log (Installation see https://github.com/WenmuZhou/reprod_log)
+
+If you need to run the compare_code, transformers >= 4.16.0.dev0 is required.
 
 ## Get started
 
